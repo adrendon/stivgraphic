@@ -9,15 +9,15 @@
   "use strict";
 
   /* global variables */
-  var portfolioKeyword = "";
-  var porftolioSingleActive = false;
-  var porftolioSingleJustClosed = false;
-  var soundEffects = false;
-  var overlay_1, overlay_2, one_page_content, tick;
-  var first_load = true;
-  var userClickedAutoplayDialog = false;
-  var homeLoaded = false;
-  var autoplay = false;
+  let portfolioKeyword = "";
+  let portfolioSingleActive = false;
+  let portfolioSingleJustClosed = false;
+  let soundEffects = false;
+  let overlay_1, overlay_2, one_page_content, tick;
+  let first_load = true;
+  let userClickedAutoplayDialog = false;
+  let homeLoaded = false;
+  let autoplay = false;
 
   /* DOCUMENT LOAD */
   $(function () {
@@ -102,9 +102,9 @@
         } else {
           // if url contains portfolio keyword
           if ($.address.path().indexOf("/" + portfolioKeyword) !== -1) {
-            if (porftolioSingleActive) {
+            if (portfolioSingleActive) {
               hideProjectDetails(true, false);
-              porftolioSingleJustClosed = false;
+              portfolioSingleJustClosed = false;
 
               // when loaded url with portfolio single url, after closing portfolio single box; open portfolio page if it is not already opened...
               if ($(".one-page-content .content-wrap").is(":empty")) {
@@ -692,7 +692,7 @@
   // ------------------------------
 
   // ------------------------------
-  // LIGHTBOX - applied to porfolio and gallery post format
+  // LIGHTBOX - applied to portfolio and gallery post format
   function setupLightbox() {
     if ($(".lightbox, .gallery, .wp-block-gallery").length) {
       $(".media-box, .gallery, .wp-block-gallery").each(function (index, element) {
@@ -1049,8 +1049,8 @@
   var pActive;
 
   function showProjectDetails(url) {
-    porftolioSingleJustClosed = true;
-    porftolioSingleActive = true;
+    portfolioSingleJustClosed = true;
+    portfolioSingleActive = true;
 
     showLoader();
 
@@ -1114,7 +1114,7 @@
   }
 
   function hideProjectDetails(forever, safeClose) {
-    porftolioSingleJustClosed = true;
+    portfolioSingleJustClosed = true;
 
     // Play Sound Effect
     if (soundEffects) {
@@ -1198,13 +1198,13 @@
     } else {
       // show page change animation
       // change page only if url doesn't target portfolio single page
-      //console.log(porftolioSingleJustClosed);
+      //console.log(portfolioSingleJustClosed);
 
-      if (porftolioSingleJustClosed) {
-        porftolioSingleJustClosed = false;
+      if (portfolioSingleJustClosed) {
+        portfolioSingleJustClosed = false;
       } else {
         if (giveDetailUrl() === -1) {
-          //porftolioSingleJustClosed = false;
+          //portfolioSingleJustClosed = false;
           var new_url = $("a[data-slug=" + path + "]").data("file-url");
           showPage(new_url);
         }
